@@ -1,17 +1,14 @@
-# Use OpenJDK 17 slim image (valid tag)
-FROM openjdk:17-slim
+# 1. Base image
+FROM eclipse-temurin:17-jre
 
-# Set working directory
+# 2. Working directory
 WORKDIR /app
 
-# Copy the jar from target
+# 3. Copy jar
 COPY target/spring-boot-complete-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose port 9090 (since 8080 is used by Jenkins)
-EXPOSE 9090
+# 4. Expose port
+EXPOSE 8080
 
-# Set Spring Boot to run on port 9090
-ENV SERVER_PORT=9090
-
-# Run the jar
+# 5. Run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
